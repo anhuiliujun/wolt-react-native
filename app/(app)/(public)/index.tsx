@@ -3,6 +3,7 @@ import GoogleAuthButton from "@/components/auth/GoogleAuthButton";
 import SmoothInfiniteScroll from "@/components/SmoothInfiniteScroll";
 import { Fonts } from "@/constants/theme";
 import { LinearGradient } from "expo-linear-gradient";
+import { Link } from "expo-router";
 import {
   Image,
   Linking,
@@ -15,7 +16,7 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 
 export default function Index() {
   const openWebBrowser = () => {
-    Linking.openURL("https://issaclau.dev");
+    Linking.openURL("https://galaxies.dev");
   };
   return (
     <View style={styles.container}>
@@ -59,9 +60,11 @@ export default function Index() {
             <GoogleAuthButton />
           </Animated.View>
           <Animated.View entering={FadeInDown.delay(300)}>
-            <TouchableOpacity style={styles.otherButton}>
-              <Text style={styles.otherButtonText}>Other options</Text>
-            </TouchableOpacity>
+            <Link href={"/(app)/(public)/other-options"} asChild>
+              <TouchableOpacity style={styles.otherButton}>
+                <Text style={styles.otherButtonText}>Other options</Text>
+              </TouchableOpacity>
+            </Link>
           </Animated.View>
         </View>
 
@@ -109,7 +112,6 @@ const styles = StyleSheet.create({
     gap: 12,
     width: "100%",
   },
-
   otherButton: {
     backgroundColor: "#f0f0f0",
     flexDirection: "row",

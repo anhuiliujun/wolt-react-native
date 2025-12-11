@@ -1,5 +1,6 @@
 import { Colors } from "@/constants/theme";
 import { categories } from "@/data/categories";
+import * as Sentry from "@sentry/react-native";
 import {
   FlatList,
   Image,
@@ -31,7 +32,12 @@ export const CategoryList = () => {
     <View style={styles.categoriesSection}>
       <View style={styles.categoriesHeader}>
         <Text style={styles.categoriesTitle}>Categories</Text>
-        <TouchableOpacity style={styles.seeAllButton}>
+        <TouchableOpacity
+          style={styles.seeAllButton}
+          onPress={() => {
+            Sentry.captureException(new Error("First error"));
+          }}
+        >
           <Text style={styles.seeAll}>See all</Text>
         </TouchableOpacity>
       </View>

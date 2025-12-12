@@ -53,6 +53,14 @@
         {
           "locationWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location"
         }
+      ],
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "wolt-react-native",
+          "organization": "yingyou-p9"
+        }
       ]
     ],
     "experiments": {

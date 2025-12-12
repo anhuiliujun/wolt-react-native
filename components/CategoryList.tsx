@@ -1,11 +1,24 @@
-import { Colors } from '@/constants/theme';
-import { categories } from '@/data/categories';
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Colors } from "@/constants/theme";
+import { categories } from "@/data/categories";
+import * as Sentry from "@sentry/react-native";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export const CategoryList = () => {
   const renderCategory = ({ item }: { item: (typeof categories)[0] }) => (
     <TouchableOpacity style={styles.categoryCard}>
-      <View style={[styles.categoryImageContainer, { backgroundColor: item.backgroundColor }]}>
+      <View
+        style={[
+          styles.categoryImageContainer,
+          { backgroundColor: item.backgroundColor },
+        ]}
+      >
         <Image source={item.image} style={styles.categoryImage} />
       </View>
       <View style={styles.categoryInfo}>
@@ -19,7 +32,12 @@ export const CategoryList = () => {
     <View style={styles.categoriesSection}>
       <View style={styles.categoriesHeader}>
         <Text style={styles.categoriesTitle}>Categories</Text>
-        <TouchableOpacity style={styles.seeAllButton}>
+        <TouchableOpacity
+          style={styles.seeAllButton}
+          onPress={() => {
+            Sentry.captureException(new Error("First error"));
+          }}
+        >
           <Text style={styles.seeAll}>See all</Text>
         </TouchableOpacity>
       </View>
@@ -40,21 +58,21 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   categoriesHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 12,
     paddingHorizontal: 16,
   },
   categoriesTitle: {
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: "600",
     marginVertical: 6,
   },
   seeAll: {
     fontSize: 14,
     color: Colors.secondary,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   seeAllButton: {
     padding: 8,
@@ -69,10 +87,10 @@ const styles = StyleSheet.create({
   categoryCard: {
     width: 130,
     borderRadius: 12,
-    overflow: 'hidden',
-    backgroundColor: '#fff',
+    overflow: "hidden",
+    backgroundColor: "#fff",
     marginVertical: 8,
-    boxShadow: '0px 4px 2px -2px rgba(0, 0, 0, 0.2)',
+    boxShadow: "0px 4px 2px -2px rgba(0, 0, 0, 0.2)",
     elevation: 2,
   },
   categoryImageContainer: {
@@ -84,7 +102,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   categoryInfo: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     padding: 12,
     paddingTop: 4,
     borderLeftWidth: StyleSheet.hairlineWidth,
@@ -94,7 +112,7 @@ const styles = StyleSheet.create({
   },
   categoryName: {
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: "600",
     marginBottom: 2,
   },
   categoryPlaces: {
